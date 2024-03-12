@@ -52,14 +52,18 @@ Now, the AKN token is deployed in your local testnet and it contract address is 
 cast send \
     --rpc-url <your-rpc-address> \
     --private-key <private-key-selected> \
-    <your-token-contract> \
-    "mint(address, uint256)()" 0x0000000000000000000000000000000000000000 1000000000000000000 
+    <your-token-contract> "mint(address, uint256)()" 0x0000000000000000000000000000000000000000 1000000000000000000 
 ```
 
 ![cast-send](./images/cast-send.png)
 
-The last two arguments from above command are, respectively, a blank address used to inform `mint` function that is supposed to mint tokens to contract owner (see the function source code) and the value of `1e18`, or `10**18` (equals a single unity of AKN token, because your decimal settled as 18 at the contract constructor).
+The last two arguments from above command are, respectively, a blank address used to inform `mint` function that is supposed to mint tokens to contract owner (see the function source code) and the value of `1e18`, or `10**18` (equals a single unity of AKN token, because of decimal settled as 18 at the contract constructor).
 
-<!-- TODO: CAST CALL COMAND -->
-<!-- cast call --rpc-url http://127.0.0.1:8545 --private-key 0x3bde3ad6daa057ec1e84ce025b5990db116555f2d1cd2dc3827b439ca2315e52 "0xEC88Ce38765f6Da99bb3941b61a3B0549EC6fD07" "whoIsOwner()(address)" -->
+- Run `cast call` commands to call different contract functions.
 
+```
+cast call \
+    --rpc-url <your-rpc-address> \
+    --private-key <private-key-selected> \
+    <your-token-contract> "totalSupply()(uint256)"
+```

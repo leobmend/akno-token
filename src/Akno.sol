@@ -18,8 +18,9 @@ contract Akno is IErrors {
     constructor() {
         _name = "Akno";
         _symbol = "AKN";
-        _decimals = 18;
+        _decimals = 8;
         _owner = msg.sender;
+        mint(address(0), 1000 * _decimals);
     }
 
     function name() public view returns (string memory) {
@@ -68,13 +69,13 @@ contract Akno is IErrors {
         _balances[to] += value;
         _totalSupply += value;
     }
+
+    function burn(uint256 value) public {
+        if (_balances[msg.sender] > value) {
+            value = _balances[msg.sender];
+        }
+
+        _balances[msg.sender] -= value;
+        _totalSupply -= value;
+    }
 }
-
-//     function setNumber(uint256 newNumber) public {
-//         number = newNumber;
-//     }
-
-//     function increment() public {
-//         number++;
-//     }
-
